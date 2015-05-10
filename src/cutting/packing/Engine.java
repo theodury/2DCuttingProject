@@ -1,4 +1,4 @@
-package cutting.object;
+package cutting.packing;
 
 
 import cutting.gui.GUI;
@@ -26,26 +26,20 @@ public class Engine {
     private int gapNumberPattern;
     private int LX;
     private int LY;
-    private int m;
+    public static int price;
     public static Rectangle sizePattern;
+    public double fitness;
 
 
     public Engine(ArrayList<String>  data){
+
         this.listItemWanted = new int[data.size()-3][4];
         this.loadData(data);
         this.sort();
         this.numberPattern =  Math.rint(this.surfaceTotal / (this.LY * this.LX));
         sizePattern = new Rectangle(0,0,LX, LY);
 
-/*
 
-        private List<IndexedRectangle> generatedRectangles;
-        List<IndexedRectangle> randomRectangles = new ArrayList<IndexedRectangle>();
-        IndexedRectangle r = new IndexedRectangle(width, height);
-
-        Algorithm selectedAlgorithm = packingSettingsPanel.getSelectedAlgorithm();
-        List<IndexedRectangle> rectangles = Packer.pack(generatedRectangles, selectedAlgorithm, BIN_WIDTH);
-        */
     }
 
     public void sort() {
@@ -78,7 +72,7 @@ public class Engine {
         for(String line : data){
             if(line.toLowerCase().startsWith("lx=")) this.LX = Integer.parseInt(line.substring(3));
             else if(line.toLowerCase().startsWith("ly=")) this.LY = Integer.parseInt(line.substring(3));
-            else if(line.toLowerCase().startsWith("m=")) this.m = Integer.parseInt(line.substring(2));
+            else if(line.toLowerCase().startsWith("m=")) this.price = Integer.parseInt(line.substring(2));
             else {
                 String elements[] = line.split("\\s+");
                 int width =  (int)Double.parseDouble(elements[0]);
@@ -99,33 +93,33 @@ public class Engine {
         Random r = new Random();
         Solution s = new Solution(this.listItemWanted);
 
-        //s.generatePatterns();
         s.generateBestPatterns();
+        fitness = s.calculFitness();
         displaySolution(s);
         draw(s);
-      //  System.out.print(s.listPattern.get(0).getNode().toString(0));
 
     }
 
     private void displaySolution(Solution s){
         System.out.print("\n");
-        System.out.println("____ Debut Display cutting.object.Solution ____");
+        System.out.println("____ Debut Display cutting.packing.Solution ____");
         System.out.print("\n");
         for(int i=0;i<s.getListPattern().size();i++){
             System.out.print(" {  ");
             for (int j = 0 ; j<s.getListPattern().get(i).getListItemWanted().length ; j++){
-                System.out.print(s.getListPattern().get(i).getListItemWanted()[j][0] + "  ");
+                System.out.print(s.getListPattern().get(i).getListItemWanted()[j][0] + "   " );
             }
-            System.out.print("} ");
+            System.out.println("} " +  " : " + s.getNbPrintPattern()[i]);
         }
-        System.out.print("\n\n");
+        System.out.print("\n");
+        System.out.println(" cout : " + fitness);
+        System.out.print("\n");
         System.out.println("____ Fin Display ____");
         System.out.print("\n");
     }
 
 
     private void draw(Solution s){
-
         GUI myGUI = new GUI(s);
     }
 }

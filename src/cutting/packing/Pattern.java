@@ -1,4 +1,4 @@
-package cutting.object;
+package cutting.packing;
 
 import java.awt.*;
 
@@ -9,7 +9,7 @@ public class Pattern {
 
     private int [][] listItem;
     // [0] x [1] y [2] width [3] height
-    private int [][] listItemWanted;
+    private double [][] listItemWanted;
     private Node node;
     public int LX = 1400;
     public int LY = 700;
@@ -27,7 +27,7 @@ public class Pattern {
         return listItem;
     }
 
-    public int[][] getListItemWanted() {
+    public double[][] getListItemWanted() {
         return listItemWanted;
     }
 
@@ -41,7 +41,7 @@ public class Pattern {
         this.node = new Node(Engine.sizePattern);
         this.numberCurrentItem = 0;
         this.listItem = new int[numberItem][settingItem];
-        this.listItemWanted = new int[length][1];
+        this.listItemWanted = new double[length][1];
         this.cols = new Color[length];
 
         for(int i=0; i<numberItem;i++){

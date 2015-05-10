@@ -1,6 +1,6 @@
 package cutting;
 
-import cutting.object.Engine;
+import cutting.packing.Engine;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,6 +1,6 @@
 package cutting.gui;
 
-import cutting.object.Solution;
+import cutting.packing.Solution;
 
 import javax.swing.*;
 import java.awt.*;

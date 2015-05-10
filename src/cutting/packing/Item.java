@@ -1,4 +1,4 @@
-package cutting.object;
+package cutting.packing;
 
 /**
  * Created by TD on 4/13/2015.
