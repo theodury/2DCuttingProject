@@ -11,14 +11,16 @@ import java.awt.*;
 public class Rect extends JComponent {
 
     private int[][] listItem;
-    private int numberCurrentPattern;
-    private int numberCurrentItem;
+    private int numberTotalItem;
+    private int numberItem;
     private JSlider sliderPattern;
 
     public Rect(Solution s, int numberCurrentPattern) {
         super();
         this.listItem = s.getListPattern().get(numberCurrentPattern).getListItem();
-        this.numberCurrentItem = s.getListPattern().get(numberCurrentPattern).getNumberCurrentItem();
+        this.numberItem = s.getListPattern().get(numberCurrentPattern).getNumberCurrentItem();
+
+
     }
 
     public void paint(Graphics g) {
@@ -28,13 +30,13 @@ public class Rect extends JComponent {
         g.fillRect(0, 0, 700, 350);
 
 
-        Color[] cols = new Color[numberCurrentItem];
-        for (int i = 0; i < numberCurrentItem; i++) {
-            cols[i] = Color.getHSBColor((float) i / (float) numberCurrentItem, 0.15f, 0.35f);
+        Color[] cols = new Color[numberItem];
+        for (int i = 0; i < numberItem; i++) {
+            cols[i] = Color.getHSBColor(((float) i / ((float) listItem[i][4] + 5)) , 0.15f, 0.35f);
         }
         for (
                 int i = 0;
-                i < numberCurrentItem; i++)
+                i < numberItem; i++)
 
         {
             g.setColor(cols[i]);
@@ -45,7 +47,7 @@ public class Rect extends JComponent {
             g.fillRect(x, y, width, height);
             g.setColor(Color.BLACK);
             g.drawRect(x, y, width, height);
-            g.drawString("P" + i, (x + 15), (y + 15));
+            g.drawString("P" + listItem[i][4], (x + 15), (y + 15));
 
         }
     }

@@ -8,12 +8,12 @@ import java.awt.*;
 public class Pattern {
 
     private int [][] listItem;
-    // [0] x [1] y [2] width [3] height
+    // [0] x [1] y [2] width [3] height [4] rand
     private double [][] listItemWanted;
     private Node node;
     public int LX = 1400;
     public int LY = 700;
-    public static int settingItem = 4;
+    public static int settingItem = 5;
     public static int numberItem = 99;
     public int numberCurrentItem;
     public Color[] cols;
@@ -69,6 +69,8 @@ public class Pattern {
             this.listItem[numberCurrentItem][1] = nodetmp.getRc().y;
             this.listItem[numberCurrentItem][2] = (int) nodetmp.getRc().getWidth();
             this.listItem[numberCurrentItem][3] = (int) nodetmp.getRc().getHeight();
+            // just for color
+            this.listItem[numberCurrentItem][4] = rand ;
             ++numberCurrentItem;
         }
         return result;
