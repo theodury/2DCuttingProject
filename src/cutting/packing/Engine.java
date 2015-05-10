@@ -26,6 +26,7 @@ public class Engine {
     private int gapNumberPattern;
     private int LX;
     private int LY;
+
     public static int price;
     public static Rectangle sizePattern;
     public double fitness;
