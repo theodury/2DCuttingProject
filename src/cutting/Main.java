@@ -14,11 +14,10 @@ public class Main {
         String nomFile = "data_test.txt";
         String pathData ="C:\\Users\\TD\\IdeaProjects\\2DCuttingProject\\Data\\"+ nomFile;
         Engine engine = new Engine(readData(pathData));
-
         engine.run();
-
-
     }
+
+
 
     public static ArrayList<String> readData (String path){
         BufferedReader br = null;
